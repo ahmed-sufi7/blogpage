@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Pro - Premium Productivity Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Georgia', 'serif'],
+                    },
+                    animation: {
+                        'scale-up': 'scale-up 0.2s ease-in-out forwards',
+                    },
+                    keyframes: {
+                        'scale-up': {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .dark .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .pricing-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .coupon-code {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="scroll-smooth font-sans bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-primary-600 dark:text-primary-400">Nexus Pro</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Features</a>
+                    <a href="#use-cases" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Use Cases</a>
+                    <a href="#pricing" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Pricing</a>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                <button class="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-[80vh] flex items-center justify-center text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Transform Your Workflow</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Nexus Pro is the all-in-one productivity suite designed to streamline your work and boost efficiency.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#features" class="bg-primary-600 hover:bg-primary-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+                    Explore Features
+                </a>
+                <a href="#pricing" class="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Powerful Features</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Designed to help you work smarter, not harder.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                    <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-primary-600 dark:text-primary-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Lightning Fast</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Optimized for speed with our proprietary engine that processes tasks up to 10x faster than competitors.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                    <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-primary-600 dark:text-primary-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Enterprise Security</h3>
+                    <p class="text-gray-600 dark:text-gray-300">End-to-end encryption and regular security audits ensure your data is always protected.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                    <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-sync-alt text-primary-600 dark:text-primary-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Real-time Sync</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Changes sync instantly across all your devices, keeping everyone on the same page.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                    <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-puzzle-piece text-primary-600 dark:text-primary-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Custom Integrations</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Connect with your favorite tools through our extensive API and pre-built integrations.</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                    <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-primary-600 dark:text-primary-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Advanced Analytics</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Get actionable insights with customizable dashboards and reports.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                    <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-primary-600 dark:text-primary-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">24/7 Support</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Our expert team is always available to help you get the most out of Nexus Pro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Who Can Benefit</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Nexus Pro adapts to your unique workflow needs.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Use Case 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
+                        <i class="fas fa-briefcase text-white text-6xl"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-3">Business Teams</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Collaborate seamlessly across departments with shared workspaces, task management, and real-time document editing.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Centralized communication</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Automated reporting</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Role-based permissions</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Use Case 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-gradient-to-r from-secondary-500 to-primary-500 flex items-center justify-center">
+                        <i class="fas fa-laptop-code text-white text-6xl"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-3">Developers</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Streamline your development workflow with integrated version control, code review tools, and deployment pipelines.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Git integration</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>CI/CD automation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>API documentation</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Use Case 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-6xl"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-3">Educators</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Create engaging learning experiences with interactive assignments, grade tracking, and student analytics.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Assignment management</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Plagiarism detection</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Parent portals</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Use Case 4 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-gradient-to-r from-secondary-500 to-primary-500 flex items-center justify-center">
+                        <i class="fas fa-paint-brush text-white text-6xl"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-3">Creatives</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Bring your ideas to life with integrated design tools, asset management, and client feedback systems.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Visual collaboration</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Version history</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Client approval workflows</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Choose the plan that fits your needs.</p>
+                
+                <!-- Coupon Banner -->
+                <div class="mt-8 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-lg p-4 max-w-2xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="font-bold text-lg">Limited Time Offer!</h3>
+                            <p>Get 20% off your first year with code:</p>
+                        </div>
+                        <div class="bg-white text-gray-900 px-4 py-2 rounded font-mono font-bold text-lg coupon-code">
+                            NEXUS20
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Basic Plan -->
+                <div class="pricing-card bg-gray-50 dark:bg-gray-700 rounded-xl p-8 transition-all duration-300 shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Starter</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Perfect for individuals and small teams</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$9</span>
+                        <span class="text-gray-600 dark:text-gray-300">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                            <span>Up to 5 users</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                            <span>10GB storage</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                            <span>Basic analytics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                            <span>Email support</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Pro Plan (Featured) -->
+                <div class="pricing-card bg-gradient-to-br from-primary-500 to-secondary-500 text-white rounded-xl p-8 transition-all duration-300 shadow-lg relative">
+                    <div class="absolute top-0 right-0 bg-yellow-400 text-gray-900 px-3 py-1 rounded-bl-lg rounded-tr-lg text-sm font-bold">
+                        Most Popular
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Professional</h3>
+                    <p class="text-primary-100 mb-6">Ideal for growing businesses</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$29</span>
+                        <span class="text-primary-200">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-white mt-1 mr-2"></i>
+                            <span>Up to 20 users</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-white mt-1 mr-2"></i>
+                            <span>100GB storage</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-white mt-1 mr-2"></i>
+                            <span>Advanced analytics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-white mt-1 mr-2"></i>
+                            <span>Priority support</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-white mt-1 mr-2"></i>
+                            <span>API access</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-white text-primary-600 hover:bg-gray-100 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="pricing-card bg-gray-50 dark:bg-gray-700 rounded-xl p-8 transition-all duration-300 shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Enterprise</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">For large organizations</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$99</span>
+                        <span class="text-gray-600 dark:text-gray-300">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                            <span>Unlimited users</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                            <span>1TB storage</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                            <span>Custom analytics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                            <span>24/7 dedicated support</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                            <span>On-premise options</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center text-gray-600 dark:text-gray-300">
+                <p>Need something different? <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline">Contact us</a> for custom solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Trusted by Thousands</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Don't just take our word for it.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                            <span class="text-primary-600 dark:text-primary-400 font-bold">JD</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Jane Doe</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Marketing Director</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">"Nexus Pro has transformed how our team collaborates. The real-time editing and task management features have saved us countless hours each week."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                            <span class="text-primary-600 dark:text-primary-400 font-bold">JS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">John Smith</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">CTO</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">"The API documentation and integration capabilities are second to none. Our developers love how easy it is to connect Nexus Pro with our existing tools."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                            <span class="text-primary-600 dark:text-primary-400 font-bold">AS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Alex Johnson</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Freelance Designer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">"As a solo creative, I needed a tool that could handle all aspects of my business. Nexus Pro is the perfect all-in-one solution for project management and client collaboration."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-500 to-secondary-500 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Workflow?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Join thousands of happy customers who are already boosting their productivity with Nexus Pro.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#pricing" class="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105">
+                    Choose Your Plan
+                </a>
+                <a href="#" class="bg-transparent border-2 border-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105">
+                    Schedule a Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Nexus Pro</h3>
+                    <p class="mb-4">The all-in-one productivity suite designed to streamline your work and boost efficiency.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="hover:text-white transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="hover:text-white transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Product</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Integrations</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Updates</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2023 Nexus Pro. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary-600 hover:bg-primary-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference, if any, on load of the website
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Mobile menu toggle (would need additional HTML elements)
+        const mobileMenuButton = document.querySelector('.md\\:hidden');
+        const mobileMenu = document.createElement('div');
+        mobileMenu.className = 'hidden fixed inset-0 bg-white/90 dark:bg-gray-800/90 z-40 flex flex-col items-center justify-center space-y-8';
+        mobileMenu.innerHTML = `
+            <button class="absolute top-4 right-4 p-2">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <a href="#features" class="text-xl hover:text-primary-600 dark:hover:text-primary-400">Features</a>
+            <a href="#use-cases" class="text-xl hover:text-primary-600 dark:hover:text-primary-400">Use Cases</a>
+            <a href="#pricing" class="text-xl hover:text-primary-600 dark:hover:text-primary-400">Pricing</a>
+            <button id="mobile-theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+        `;
+        document.body.appendChild(mobileMenu);
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+        });
+        
+        mobileMenu.querySelector('button').addEventListener('click', () => {
+            mobileMenu.classList.remove('flex');
+            mobileMenu.classList.add('hidden');
+        });
+        
+        // Mobile theme toggle
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        mobileThemeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('flex')) {
+                        mobileMenu.classList.remove('flex');
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Initialize Preline UI components
+        document.addEventListener('DOMContentLoaded', function() {
+            // This would initialize any Preline UI components we add later
+            // Currently we're using their JS for potential future components
+        });
+
+        // Coupon code copy functionality
+        const couponCode = document.querySelector('.coupon-code');
+        if (couponCode) {
+            couponCode.addEventListener('click', () => {
+                const text = couponCode.textContent.trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = couponCode.textContent;
+                    couponCode.textContent = 'Copied!';
+                    couponCode.classList.add('bg-green-100', 'text-green-800');
+                    setTimeout(() => {
+                        couponCode.textContent = originalText;
+                        couponCode.classList.remove('bg-green-100', 'text-green-800');
+                    }, 2000);
+                });
+            });
+        }
+
+        // Pricing card hover effects
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.02)';
+                card.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            });
+        });
+
+        // Feature card hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            });
+        });
+
+        // Button hover effects
+        document.querySelectorAll('button, a[href]').forEach(button => {
+            if (button.classList.contains('transform')) return;
+            
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>
